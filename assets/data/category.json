@@ -1,0 +1,27 @@
+[
+  {
+    "id": 1,
+    "key": "all",
+    "name": "전체"
+  },
+  {
+    "id": 2,
+    "key": "coffee",
+    "name": "커피"
+  },
+  {
+    "id": 3,
+    "key": "blended",
+    "name": "블렌디드"
+  },
+  {
+    "id": 4,
+    "key": "cake",
+    "name": "케이크"
+  },
+  {
+    "id": 5,
+    "key": "sandwich",
+    "name": "샌드위치"
+  }
+]
