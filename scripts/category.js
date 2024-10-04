@@ -1,15 +1,24 @@
 import { filterMenu, generateMenuHTML } from './menu.js';
 import { render } from './dom.js';
+import { fetchCategories } from './data.js';
 
-export const createCategoryElement = (categories) => {
-  const elements = categories.map(category => (
-    `<li><button data-category="${category.key}">${category.name}</button></li>`
-  ));
+export const initCategory = async () => {
+  const categories = await fetchCategories();
+  const categoryHTML = generateCategoryHTML(categories);
 
-  return elements.join('');
+  render('#categories', categoryHTML);
+  addCategoryEventListener();
 }
 
-export const addCategoryEventListener = () => {
+const generateCategoryHTML = (categories) => {
+  return categories.map(category => createCategoryElement(category)).join('');
+}
+
+const createCategoryElement = ({ key, name }) => {
+  return `<li><button data-category="${key}">${name}</button></li>`;
+}
+
+const addCategoryEventListener = () => {
   const categoryContainer = document.querySelector('#categories');
 
   categoryContainer.addEventListener('click', ({ target }) => {
