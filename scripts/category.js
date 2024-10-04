@@ -1,4 +1,4 @@
-import { createMenuElement, filterMenu } from './menu.js';
+import { filterMenu, generateMenuHTML } from './menu.js';
 import { render } from './dom.js';
 
 export const createCategoryElement = (categories) => {
@@ -25,7 +25,7 @@ export const addCategoryEventListener = () => {
 
 const handleCategoryClick = (category) => {
   const filteredMenu = filterMenu(category);
-  const element = createMenuElement(filteredMenu);
+  const menuHTML = generateMenuHTML(filteredMenu);
 
-  render('#menus', element);
+  render('#menus', menuHTML);
 }

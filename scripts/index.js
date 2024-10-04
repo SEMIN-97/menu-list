@@ -1,7 +1,7 @@
-import { fetchCategories, fetchMenus } from './data.js';
+import { fetchCategories } from './data.js';
 import { render } from './dom.js';
 import { addCategoryEventListener, createCategoryElement } from './category.js';
-import { createMenuElement } from './menu.js';
+import { initMenu } from './menu.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
   const categories = await fetchCategories();
@@ -9,7 +9,5 @@ document.addEventListener('DOMContentLoaded', async () => {
   render('#categories', categoryElement);
   addCategoryEventListener();
 
-  const menus = await fetchMenus();
-  const menuElement = createMenuElement(menus);
-  render('#menus', menuElement);
+  await initMenu();
 });
