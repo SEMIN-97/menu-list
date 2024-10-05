@@ -15,7 +15,7 @@ const generateCategoryHTML = (categories) => {
 }
 
 const createCategoryElement = ({ key, name }) => {
-  return `<li><button data-category="${key}">${name}</button></li>`;
+  return `<li><button data-category="${key}"><span>${name}</span></button></li>`;
 }
 
 const addCategoryEventListener = () => {

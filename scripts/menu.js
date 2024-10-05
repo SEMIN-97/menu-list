@@ -20,8 +20,8 @@ const createMenuElement = ({ id, name, price }) => {
     <li>
       <img src="/assets/images/menu/${id}.png" alt="">
       <div class="info">
-        <p class="name">${name}</p>
-        <p class="price">${price}</p>
+        <p>${name}</p>
+        <p>${price}</p>
       </div>
     </li>
   `)
