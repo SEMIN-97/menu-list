@@ -1,5 +1,5 @@
 import { filterMenu, generateMenuHTML } from './menu.js';
-import { render } from './dom.js';
+import { addClass, removeClass, render } from './dom.js';
 import { fetchCategories } from './data.js';
 
 export const initCategory = async () => {
@@ -7,6 +7,7 @@ export const initCategory = async () => {
   const categoryHTML = generateCategoryHTML(categories);
 
   render('#categories', categoryHTML);
+  setFirstCategoryActive();
   addCategoryEventListener();
 }
 
@@ -22,14 +23,15 @@ const addCategoryEventListener = () => {
   const categoryContainer = document.querySelector('#categories');
 
   categoryContainer.addEventListener('click', ({ target }) => {
-    const selectedCategory = target?.dataset?.category;
+    const selectedCategory = target.closest('button')?.dataset?.category;
 
     if (!selectedCategory) {
       return;
     }
 
     handleCategoryClick(selectedCategory);
-  })
+    setActiveCategory(target.closest('li'));
+  });
 }
 
 const handleCategoryClick = (category) => {
@@ -37,4 +39,20 @@ const handleCategoryClick = (category) => {
   const menuHTML = generateMenuHTML(filteredMenu);
 
   render('#menus', menuHTML);
+}
+
+const setFirstCategoryActive = () => {
+  const firstCategoryElement = document.querySelectorAll('#categories li')[0];
+  setActiveCategory(firstCategoryElement);
+}
+
+const setActiveCategory = (targetElement) => {
+  const container = document.querySelector('#categories');
+  const currentActiveElement = container.querySelector('li.active');
+
+  if (currentActiveElement) {
+    removeClass(currentActiveElement, 'active');
+  }
+
+  addClass(targetElement, 'active');
 }
